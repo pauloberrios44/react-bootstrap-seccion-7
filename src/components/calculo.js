@@ -10,15 +10,19 @@ function CalculoRemuneraciones() {
     const [bonoMovilizacion, setBonoMovilizacion] = useState(0);
     const [bonoColacion, setBonoColacion] = useState(0);
     const [viaticos, setViaticos] = useState(0);
+    const [tipoPrevisionSalud, setTipoPrevisionSalud] = useState("");
 
     console.log(bonoColacion);
+    console.log(tipoPrevisionSalud);
 
     // Porcentajes
     const porcentajeAFP = 0.1;
     const porcentajeComisionAFP = 0.005;
     const porcentajeSeguroIS = 0.014;
-    const porcentajeSalud = 0.07;
+    const porcentajeSalud = tipoPrevisionSalud == 2 ? 0.07 : 0.1;
     const porcentajeSeguroCesantia = 0.006;
+
+    console.log(porcentajeSalud);
   
     // variables auto-calculadas
     const sueldoImponible = parseInt(sueldoBruto) + parseInt(gratificacionLegal);
@@ -38,6 +42,16 @@ function CalculoRemuneraciones() {
             <div className='form-group mt-3'>
               <label className='form-label' htmlFor='gratificacionLegal'>Gratificacion Legal</label>
               <input id='gratificacionLegal' name='gratificacionLegal' placeholder='200000' type='number' className='form-control' value={gratificacionLegal} onChange={(e) => setGratificacionLegal(e.target.value)}></input>
+            </div>
+
+            <div className='form-group mt-3'>
+              <label className='form-label' htmlFor='tipoPrevisionSalud'>Salud</label>
+              <select className='form-select' id='tipoPrevisionSalud' name='tipoPrevisionSalud' 
+                onChange={(e) => setTipoPrevisionSalud(e.target.value)}>
+                <option value=''>Seleccione previsión</option>
+                <option value='1'>Isapre</option>
+                <option value='2'>Fonasa</option>
+              </select>
             </div>
 
             <h4 className='mt-3'>No imponibles</h4>
