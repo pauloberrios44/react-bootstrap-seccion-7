@@ -3,7 +3,17 @@ import { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 
 function CalculoRemuneraciones() {
+    
+
     const [sueldoBruto, setSueldoBruto] = useState(0);
+    const [gratificacionLegal, setGratificacionLegal] = useState(0);
+    const [bonoMovilizacion, setBonoMovilizacion] = useState(0);
+    const [bonoColacion, setBonoColacion] = useState(0);
+    const [viaticos, setViaticos] = useState(0);
+
+    console.log(bonoColacion);
+
+    // Porcentajes
     const porcentajeAFP = 0.1;
     const porcentajeComisionAFP = 0.005;
     const porcentajeSeguroIS = 0.014;
@@ -11,21 +21,44 @@ function CalculoRemuneraciones() {
     const porcentajeSeguroCesantia = 0.006;
   
     // variables auto-calculadas
-    const resultadoAFP = parseInt(sueldoBruto * porcentajeAFP);
-    const resultadoComisionAFP = parseInt(sueldoBruto * porcentajeComisionAFP);
+    const sueldoImponible = parseInt(sueldoBruto) + parseInt(gratificacionLegal);
+    const resultadoAFP = parseInt(sueldoImponible * porcentajeAFP);
+    const resultadoComisionAFP = parseInt(sueldoImponible * porcentajeComisionAFP);
+    const liquidoAPagar = parseInt(sueldoBruto) - parseInt(resultadoAFP) - parseInt(resultadoComisionAFP) + parseInt(bonoColacion) + parseInt(bonoMovilizacion) + parseInt(viaticos);
   
     return (
-        <div className='row mt-3'>
+        <div className='row mt-3' id='demo'>
           <div className='col-lg-6'>
-            <h4>Datos sueldo</h4>
+            <h4 className='text-center py-3'>Datos sueldo</h4>
             <div className='form-group'>
               <label className='form-label' htmlFor='sueldoBruto'>Ingrese sueldo bruto</label>
-              <input id='sueldoBruto' name='sueldoBruto' placeholder='1000000' type='text' className='form-control' value={sueldoBruto} onChange={(e) => setSueldoBruto(e.target.value)}></input>
+              <input id='sueldoBruto' name='sueldoBruto' placeholder='1000000' type='number' className='form-control' value={sueldoBruto} onChange={(e) => setSueldoBruto(e.target.value)}></input>
+            </div>
+
+            <div className='form-group mt-3'>
+              <label className='form-label' htmlFor='gratificacionLegal'>Gratificacion Legal</label>
+              <input id='gratificacionLegal' name='gratificacionLegal' placeholder='200000' type='number' className='form-control' value={gratificacionLegal} onChange={(e) => setGratificacionLegal(e.target.value)}></input>
+            </div>
+
+            <h4 className='mt-3'>No imponibles</h4>
+            <div className='form-group mt-3'>
+              <label className='form-label' htmlFor='bonoMovilizacion'>Bono movilizacion</label>
+              <input id='bonoMovilizacion' name='bonoMovilizacion' placeholder='200000' type='number' className='form-control' value={bonoMovilizacion} onChange={(e) => setBonoMovilizacion(e.target.value)}></input>
+            </div>
+
+            <div className='form-group mt-3'>
+              <label className='form-label' htmlFor='bonoColacion'>Bono colación</label>
+              <input id='bonoColacion' name='bonoColacion' placeholder='200000' type='number' className='form-control' value={bonoColacion} onChange={(e) => setBonoColacion(e.target.value)}></input>
+            </div>
+
+            <div className='form-group mt-3'>
+              <label className='form-label' htmlFor='viaticos'>Viáticos</label>
+              <input id='viaticos' name='viaticos' placeholder='200000' type='number' className='form-control' value={viaticos} onChange={(e) => setViaticos(e.target.value)}></input>
             </div>
           </div>
 
           <div className='col-lg-6'>
-            <h4>Resultados</h4>
+            <h4 className='text-center py-3'>Resultados</h4>
             <Table striped bordered hover>
               <thead>
                 <tr>
@@ -37,8 +70,8 @@ function CalculoRemuneraciones() {
               <tbody>
                 <tr>
                   <td className='text-center'>1</td>
-                  <td>(+) Sueldo Bruto CLP</td>
-                  <td>{parseInt(sueldoBruto).toLocaleString()}</td>
+                  <td>(+) Sueldo imponible CLP</td>
+                  <td>{parseInt(sueldoImponible).toLocaleString()}</td>
                 </tr>
                 <tr>
                   <td className='text-center'>2</td>
@@ -66,8 +99,8 @@ function CalculoRemuneraciones() {
                   <td>{parseInt(sueldoBruto * porcentajeSeguroCesantia).toLocaleString()}</td>
                 </tr>
                 <tr style={{fontSize: '24px'}}>
-                  <td colSpan={2}>Total</td>
-                  <td>{parseInt(sueldoBruto - resultadoAFP - resultadoComisionAFP).toLocaleString()}</td>
+                  <td colSpan={2}>Líquido a pagar</td>
+                  <td>{liquidoAPagar.toLocaleString()}</td>
                 </tr>
               </tbody>
             </Table>
