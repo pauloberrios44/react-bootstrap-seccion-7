@@ -3,7 +3,7 @@ import logo from '../assets/images/imagen_rrhh_1.png';
 
 function BannerPrincipal() {
     return (
-        <div className='row mt-3'>
+        <div className='row mt-3' id='inicio'>
           <div className='col-lg-6'>
             <img className='rounded' src={logo} style={{width: '100%'}}></img>
           </div>
