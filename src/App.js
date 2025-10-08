@@ -3,14 +3,18 @@ import './App.css';
 import Titulo from './components/titulo';
 import Banner from './components/banner';
 import CalculoRemuneraciones from './components/calculo';
+import TituloDemo from './components/tituloDemo';
+import Footer from './components/footer';
 
 function App() {
   return (
-    <div className="">
+    <div className="bg-light">
       <div className='container'>
         <Titulo />
         <Banner />
-        <CalculoRemuneraciones/>        
+        <TituloDemo/>
+        <CalculoRemuneraciones/>
+        <Footer/>
       </div>
     </div>
   );
