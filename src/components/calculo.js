@@ -84,6 +84,17 @@ function CalculoRemuneracion() {
                         <input type='number' id='montoViatico' name='montoViatico' className='form-control' value={montoViatico} placeholder='20000' onChange={(e) => setMontoViatico(e.target.value)}></input>
                     </div>
 
+                    <div className='form-group mt-3'>
+                        <a className='btn btn-danger' onClick={(e) => {
+                            setSueldoBruto(0);
+                            setGratificacionLegal(0);
+                            setTipoPrevision("");
+                            setMontoColacion(0);
+                            setMontoMovilizacion(0);
+                            setMontoViatico(0);
+                        }}><i class="fa-solid fa-trash"></i> Limpiar</a>
+                    </div>
+
                 </div>
 
                 <div className='col-lg-6'>
