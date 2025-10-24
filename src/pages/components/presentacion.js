@@ -9,7 +9,7 @@ function PresentacionPrincipal() {
             </div>
             <div className='col-lg-6'>
                 <p>dsau dosauidpoasiud saodsau dosauidpoasiud saodsau dosauidpoasiud saodsau dosauidpoasiud saodsau dosauidpoasiud saodsau dosauidpoasiud saodsau dosauidpoasiud saodsau dosauidpoasiud saodsau dosauidpoasiud saodsau dosauidpoasiud sao</p>
-                <a href='/assets/documents/CALENDARIO-ACADEMICO-2025.pdf' className='btn btn-success' target='_blank'><i class="fa-solid fa-download"></i> Descargar Brochure</a>
+                <a href='/assets/documents/CALENDARIO-ACADEMICO-2025.pdf' className='btn btn-success' target='_blank'><i className="fa-solid fa-download"></i> Descargar Brochure</a>
             </div>
         </div>
     );

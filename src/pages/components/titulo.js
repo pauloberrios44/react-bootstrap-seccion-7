@@ -5,17 +5,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function tituloPrincipal() {
-  console.log('Componente montado');
-
-  return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    return (
+      <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home"><img src='/assets/images/logo512.png' style={{width: '30px'}}></img> React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="/">Recursos humanos</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/calculadora">Calculadora</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -31,7 +29,7 @@ function tituloPrincipal() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  );
+    );
 }
 
 export default tituloPrincipal;

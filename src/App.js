@@ -1,25 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-import Titulo from './components/titulo';
-import Banner from './components/banner';
-import CalculoRemuneracion from './components/calculo';
-import PresentacionPrincipal from './components/presentacion';
-import FooterPrincipal from './components/footer';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/home';
+import CalculoRemuneracion from './pages/calculadora';
 
 function App() {
 
-
-
   return (
-    <div className="">
-      <Titulo />
-      <div className='container'>
-        <Banner />
-        <PresentacionPrincipal />
-        <CalculoRemuneracion />
-      </div>
-      <FooterPrincipal />
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>}></Route>
+        <Route path='/calculadora' element={<CalculoRemuneracion/>}></Route>
+      </Routes>
+    </Router>
+    
   );
 }
 

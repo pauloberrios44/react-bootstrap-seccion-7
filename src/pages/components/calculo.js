@@ -13,15 +13,15 @@ function CalculoRemuneracion() {
 
     // constantes
     const porcentajeComisionAFP = 0.009;
-    const porcentajeSeguroCesantia = 0.006;
     const porcentajeComisionSalud = tipoPrevision == 1 ? 0.07 : 0.1;
+    const porcentajeImpuestoUnico = 0.01;
+    const porcentajeSeguroCesantia = 0.006;
 
     // resultado
     const resultadoSueldoImponible = parseInt(sueldoBruto) + parseInt(gratificacionLegal);
     const resultadoComisionAFP = parseInt(resultadoSueldoImponible) * porcentajeComisionAFP;
     const resultadoAFP = parseInt(resultadoSueldoImponible) * 0.1;
     const resultadoSalud = parseInt(resultadoSueldoImponible * porcentajeComisionSalud);
-    const porcentajeImpuestoUnico = resultadoSueldoImponible >= 1000000 ? 0.01 : 0.005;
     const resultadoImpuestoUnico = parseInt(resultadoSueldoImponible * porcentajeImpuestoUnico);
     const resultadoSeguroCesantia = parseInt(resultadoSueldoImponible * porcentajeSeguroCesantia);
     const resultadoMontoMovilizacion = parseInt(montoMovilizacion);
@@ -41,7 +41,7 @@ function CalculoRemuneracion() {
 
     return (
         <div>
-            <div className='row mt-3'>
+            <div className='row'>
                 <div className='col-lg-12 text-center bg-secondary text-white p-3 rounded'>
                     <h2>Demo de cálculo</h2>
                     <h4>Sueldo líquido</h4>
@@ -84,17 +84,6 @@ function CalculoRemuneracion() {
                         <input type='number' id='montoViatico' name='montoViatico' className='form-control' value={montoViatico} placeholder='20000' onChange={(e) => setMontoViatico(e.target.value)}></input>
                     </div>
 
-                    <div className='form-group mt-3'>
-                        <a className='btn btn-warning' onClick={(e) => {
-                            setSueldoBruto(0);
-                            setGratificacionLegal(0);
-                            setTipoPrevision("");
-                            setMontoMovilizacion(0);
-                            setMontoColacion(0);
-                            setMontoViatico(0);
-                        }}>Limpiar</a>
-                    </div>
-
                 </div>
 
                 <div className='col-lg-6'>
@@ -109,8 +98,8 @@ function CalculoRemuneracion() {
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>Sueldo imponible</td>
-                                <td>$ {parseInt(resultadoSueldoImponible).toLocaleString()}</td>
+                                <td>Sueldo Bruto</td>
+                                <td>$ {parseInt(sueldoBruto).toLocaleString()}</td>
                             </tr>
                             <tr>
                                 <td>2</td>
@@ -140,7 +129,7 @@ function CalculoRemuneracion() {
 
                             <tr style={{ fontSize: '18px' }}>
                                 <td colSpan={2}>Total</td>
-                                <td>$ {parseInt(liquidoAPagar.toFixed(0)).toLocaleString()}</td>
+                                <td>$ {liquidoAPagar.toLocaleString()}</td>
                             </tr>
                         </tbody>
                     </Table>
